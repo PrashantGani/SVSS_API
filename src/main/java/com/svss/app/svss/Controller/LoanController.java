@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.svss.app.svss.DTO.LoanDTO;
 import com.svss.app.svss.Service.LoanService;
@@ -33,5 +34,12 @@ public class LoanController {
     {
     	List<LoanDTO> dtoList = loanService.getAllLoan();
         return ResponseEntity.ok(dtoList);
+    }
+//    http://localhost:8080/api/v1/getLoan
+    @GetMapping(path = "/getLoanByMemberId")
+    public ResponseEntity<List<LoanDTO>> getAllLoanByMemberId(@RequestParam int memberId)
+    {
+    	List<LoanDTO> dtoList = loanService.getAllLoanByMemberId(memberId);
+    	return ResponseEntity.ok(dtoList);
     }
 }

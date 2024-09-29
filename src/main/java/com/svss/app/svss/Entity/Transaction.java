@@ -30,10 +30,42 @@ public class Transaction {
     @Column(name = "created_at", nullable = true, updatable = false)
     private Timestamp createdAt;
 
-    // Getters and Setters
-
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false) // Foreign key column in the transactions table
+    private Member member;
+    
     public int getTransactionId() {
 		return transactionId;
+	}
+
+
+
+
+
+	public int getMemberId() {
+		return memberId;
+	}
+
+
+
+
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+
+
+
+
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 
@@ -75,13 +107,7 @@ public class Transaction {
     }
 
 
-	public int getMemberId() {
-		return memberId;
-	}
 
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
 
 	public Transaction() {
 		super();

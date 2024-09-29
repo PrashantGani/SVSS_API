@@ -1,5 +1,7 @@
 package com.svss.app.svss.Entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -33,8 +35,18 @@ public class Member {
     
     private boolean otpVerified;
     
-    
-    
+    @Transient
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Transaction> transactions; 
+    public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+
+	
     
     public String getOtp() {
 		return otp;

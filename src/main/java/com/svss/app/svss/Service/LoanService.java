@@ -10,5 +10,7 @@ public interface LoanService {
 
 	public List<LoanDTO> getAllLoan();
 
+	public List<LoanDTO> getAllLoanByMemberId(int memberId);
+
 	
 }

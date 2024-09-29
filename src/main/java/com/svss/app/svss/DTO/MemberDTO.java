@@ -1,5 +1,9 @@
 package com.svss.app.svss.DTO;
 
+import java.util.List;
+
+import com.svss.app.svss.Entity.Transaction;
+
 public class MemberDTO {
 
     private int memberId;
@@ -11,8 +15,17 @@ public class MemberDTO {
     private String created_at;
     private String otp;
     private boolean otpVerified;
+    private List<Transaction> transactionsDetails; 
     
-    public String getOtp() {
+	public List<Transaction> getTransactionsDetails() {
+		return transactionsDetails;
+	}
+
+	public void setTransactionsDetails(List<Transaction> transactionsDetails) {
+		this.transactionsDetails = transactionsDetails;
+	}
+
+	public String getOtp() {
 		return otp;
 	}
 

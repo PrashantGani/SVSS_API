@@ -16,11 +16,6 @@ import jakarta.persistence.Tuple;
 @EnableJpaRepositories
 @Repository
 public interface TransactionRepo extends JpaRepository<Transaction, Integer>{
-
-//	List<TransactionsDTO> findByMemberId(int memberId);
-//	@Query("SELECT t.transactionId AS transactionId, t.amount AS amount, t.date AS date, t.particular AS particular, t.createdAt AS createdAt " +
-//		       "FROM Transaction t WHERE t.memberId = :memberId")
-//	List<Transaction> findByMemberId(@Param("memberId") int memberId);
 	
 	 @Query("SELECT t FROM Transaction t WHERE t.memberId = :memberId")
 	    List<Transaction> findByMemberId(@Param("memberId") int memberId);

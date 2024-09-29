@@ -4,21 +4,61 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import com.svss.app.svss.Entity.Member;
+
+
 public class TransactionsDTO {
 
     private int transactionId;
-	private int memberId;
-    private Date date;
+    private int memberId; 
+	private Date date;
     private String particular;
     private BigDecimal amount;
     private Timestamp createdAt;
-
-
+    private MemberDTO memberDetails;
+    
     // Getters and Setters
 
-    public int getTransactionId() {
+    public int getMemberId() {
+		return memberId;
+	}
+
+
+
+	public TransactionsDTO(int transactionId, int memberId, Date date, String particular, BigDecimal amount,
+			Timestamp createdAt, MemberDTO memberDetails) {
+		super();
+		this.transactionId = transactionId;
+		this.memberId = memberId;
+		this.date = date;
+		this.particular = particular;
+		this.amount = amount;
+		this.createdAt = createdAt;
+		this.memberDetails = memberDetails;
+	}
+
+
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+    
+    public MemberDTO getMemberDetails() {
+		return memberDetails;
+	}
+
+
+
+	public void setMemberDetails(MemberDTO memberDetails) {
+		this.memberDetails = memberDetails;
+	}
+
+
+
+	public int getTransactionId() {
 		return transactionId;
 	}
+
 
 
 	public void setTransactionId(int transactionId) {
@@ -29,15 +69,6 @@ public class TransactionsDTO {
         return date;
     }
     
-
-	public int getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
-
 	public void setDate(Date date) {
         this.date = date;
     }
@@ -68,16 +99,9 @@ public class TransactionsDTO {
     }
 
 
-	public TransactionsDTO(int transactionId, int memberId, Date date, String particular, BigDecimal amount,
-			Timestamp createdAt) {
-		super();
-		this.transactionId = transactionId;
-		this.memberId = memberId;
-		this.date = date;
-		this.particular = particular;
-		this.amount = amount;
-		this.createdAt = createdAt;
-	}
+
+
+
 
 
 	public TransactionsDTO() {

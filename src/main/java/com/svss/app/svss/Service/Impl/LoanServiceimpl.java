@@ -62,4 +62,24 @@ public class LoanServiceimpl implements LoanService{
 	    
 	    return loanDTOs;
 }
+
+	@Override
+	public List<LoanDTO> getAllLoanByMemberId(int memberId) {
+		List<Loan> loans = loanRepo.findByMemberId(memberId);
+		 List<LoanDTO> loanDTOs = new ArrayList<>();
+		   for (Loan loan : loans) {
+		        LoanDTO loanDTO = new LoanDTO();
+		        loanDTO.setLoanId(loan.getLoanId());
+		        loanDTO.setMemberId(loan.getMemberId());
+		        loanDTO.setDate(loan.getDate());
+		        loanDTO.setParticular(loan.getParticular());
+		        loanDTO.setAmount(loan.getAmount());
+		        loanDTO.setStatus(loan.getStatus());
+		        loanDTO.setRemarks(loan.getRemarks());
+		        loanDTO.setCreatedAt(loan.getCreatedAt());
+		        
+		        loanDTOs.add(loanDTO);
+		    }
+		return loanDTOs;
+	}
 }

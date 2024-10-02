@@ -1,6 +1,7 @@
 package com.svss.app.svss.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,9 @@ public class LoanController {
     
 //    http://localhost:8080/api/v1/addLoan
     @PostMapping(path = "/addLoan")
-    public String saveEmployee(@RequestBody LoanDTO loanDTO)
+    public Map<String, String> saveEmployee(@RequestBody LoanDTO loanDTO)
     {
-        String message = loanService.addLoan(loanDTO);
+    	Map<String, String> message = loanService.addLoan(loanDTO);
         return message;
     }
     

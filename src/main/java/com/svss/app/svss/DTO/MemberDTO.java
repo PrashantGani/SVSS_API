@@ -11,7 +11,7 @@ public class MemberDTO {
     private String email;
     private String password;
     private String number;
-    private String is_admin;
+    private boolean is_admin;
     private String created_at;
     private String otp;
     private boolean otpVerified;
@@ -40,10 +40,10 @@ public class MemberDTO {
 	public void setOtpVerified(boolean otpVerified) {
 		this.otpVerified = otpVerified;
 	}
-	public String getIs_admin() {
+	public boolean getIs_admin() {
 		return is_admin;
 	}
-	public void setIs_admin(String is_admin) {
+	public void setIs_admin(boolean is_admin) {
 		this.is_admin = is_admin;
 	}
 	public String getCreated_at() {

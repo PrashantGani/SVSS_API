@@ -32,9 +32,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public String addMember(MemberDTO memberDTO) {
-    	String is_admin = memberDTO.getIs_admin();
-    	if (is_admin== null) {
-    		is_admin="0";
+    	boolean is_admin = memberDTO.getIs_admin();
+    	if (is_admin) {
+    		is_admin=false;
 		}
     	
     	String memberName = memberDTO.getMemberName();
@@ -59,20 +59,29 @@ public class MemberServiceImpl implements MemberService {
     	member.setNumber(number);
     	member.setCreated_at(formattedDateTime);
         member.setCreated_at(formattedDateTime);
+        String otp = generateOtp();
+        member.setOtp(otp);
         memberRepo.save(member);
-
+        
+        emailService.sendOtpEmail(email, otp);
         return " Member Added Successfully";
     }
 
     @Override
     public Map<Object, Object> loginMember(LoginDTO loginDTO) {
         String msg = "";
+       
+        
         Map<Object,Object> response = new HashMap<>();
         Optional<Member> byEmail = memberRepo.findByEmail(loginDTO.getEmail());
         Member member = byEmail.get();
+        boolean is_admin = member.getIs_admin();
+        boolean isOtpVerified = member.isOtpVerified();
+//        String otp = member.geti
+//        boolean verifyOtp = verifyOtp(otp);
         int memberId = member.getMemberId();
         response.put("memberId", memberId);
-        if (member != null) {
+        if (member != null && isOtpVerified) {
             String password = loginDTO.getPassword();
            
            
@@ -82,6 +91,7 @@ public class MemberServiceImpl implements MemberService {
                 Optional<Member> employee = memberRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if (employee.isPresent()) {
                     response.put("Status", "Login Success");
+                    response.put("isAdmin", is_admin);
                 	return response;
                 } else {
                 	response.put("Status", "Login Failed");

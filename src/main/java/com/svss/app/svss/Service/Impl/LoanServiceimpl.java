@@ -2,8 +2,10 @@ package com.svss.app.svss.Service.Impl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,9 @@ public class LoanServiceimpl implements LoanService{
 	private LoanRepo loanRepo;
 	
 	@Override
-	public String addLoan(LoanDTO loanDTO) {
+	public Map<String, String> addLoan(LoanDTO loanDTO) {
 		Loan loan = new Loan();
+		Map<String, String> response = new HashMap<>();
 		loan.setLoanId(loanDTO.getLoanId());
 		loan.setMemberId(loanDTO.getMemberId());
 		loan.setDate(loanDTO.getDate());
@@ -32,7 +35,8 @@ public class LoanServiceimpl implements LoanService{
 		 Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 		loan.setCreatedAt(currentTimestamp);
 		loanRepo.save(loan);
-		return "Loan Created for the memebrId : "+loanDTO.getMemberId();
+		response.put("response", "Loan Created Successfully for the memebrId : "+loanDTO.getMemberId());
+		return response;
 	}
 
 	@Override

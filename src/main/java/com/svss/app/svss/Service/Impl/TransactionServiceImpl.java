@@ -2,8 +2,10 @@ package com.svss.app.svss.Service.Impl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,8 @@ public class TransactionServiceImpl implements TransactionService{
 	private MemberRepo memberRepo;
 	
 	@Override
-	public String addTransaction(TransactionsDTO dto) {
+	public Map<String,String> addTransaction(TransactionsDTO dto) {
+		Map<String, String> response= new HashMap<>();
 		Transaction transaction = new Transaction();
 		transaction.setTransactionId(dto.getTransactionId());
 		transaction.setMemberId(dto.getMemberId());
@@ -41,7 +44,8 @@ public class TransactionServiceImpl implements TransactionService{
 		Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 		transaction.setCreatedAt(currentTimestamp);
 		transactionRepo.save(transaction);
-		return "Loan Created for the memebrId : "+dto.getMemberId();
+		response.put("response", "Loan Created for the memebrId : "+dto.getMemberId());
+		return response;
 	}
 
 	int memberId;

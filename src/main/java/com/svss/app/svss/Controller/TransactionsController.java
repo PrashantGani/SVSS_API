@@ -1,6 +1,7 @@
 package com.svss.app.svss.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,10 @@ public class TransactionsController {
     
 //    http://localhost:8080/api/v1/addTransaction
     @PostMapping(path = "/addTransaction")
-    public String saveTrasaction(@RequestBody TransactionsDTO transactionDto)
+    public Map<String,String> saveTrasaction(@RequestBody TransactionsDTO transactionDto)
     {
-        String message = transactionService.addTransaction(transactionDto);
-        return message;
+        Map<String, String> transaction = transactionService.addTransaction(transactionDto);
+        return transaction;
     }
     
 //    http://localhost:8080/api/v1/getTransaction

@@ -26,7 +26,7 @@ public class Member {
     private String number;
     
 //	@Column(name="is_admin", length = 255)
-    private String is_admin;
+    private boolean is_admin;
     
 //    @Column(name="created_at", length = 255)
     private String created_at;
@@ -57,18 +57,18 @@ public class Member {
 	}
 
 	public boolean isOtpVerified() {
-		return otpVerified;
+	    return otpVerified;
 	}
 
 	public void setOtpVerified(boolean otpVerified) {
 		this.otpVerified = otpVerified;
 	}
 
-	public String getIs_admin() {
+	public boolean getIs_admin() {
 		return is_admin;
 	}
 
-	public void setIs_admin(String is_admin) {
+	public void setIs_admin(boolean is_admin) {
 		this.is_admin = is_admin;
 	}
 
@@ -122,7 +122,7 @@ public class Member {
 		this.password = password;
 	}
 
-	public Member(int memberId, String memberName, String email, String password, String number, String is_admin,
+	public Member(int memberId, String memberName, String email, String password, String number, boolean is_admin,
 			String created_at) {
 		super();
 		this.memberId = memberId;

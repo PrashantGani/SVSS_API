@@ -70,13 +70,15 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Map<Object, Object> loginMember(LoginDTO loginDTO) {
         String msg = "";
-       
+       System.out.println("INSIDE the LOGIN METHOD");
         
         Map<Object,Object> response = new HashMap<>();
         Optional<Member> byEmail = memberRepo.findByEmail(loginDTO.getEmail());
+        System.out.println("memberRepo.findByEmail"+loginDTO.getEmail());
         Member member = byEmail.get();
         boolean is_admin = member.getIs_admin();
         boolean isOtpVerified = member.isOtpVerified();
+        System.out.println("isOtpVerified"+isOtpVerified);
 //        String otp = member.geti
 //        boolean verifyOtp = verifyOtp(otp);
         int memberId = member.getMemberId();
@@ -87,7 +89,9 @@ public class MemberServiceImpl implements MemberService {
            
             String encodedPassword = member.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
+            System.out.println("isPwdRight"+isPwdRight);
             if (isPwdRight) {
+            	System.out.println("pwd matched  : "+isPwdRight);
                 Optional<Member> employee = memberRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if (employee.isPresent()) {
                     response.put("Status", "Login Success");

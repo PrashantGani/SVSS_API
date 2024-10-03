@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
     	if (is_admin) {
     		is_admin=false;
 		}
-    	
+    	String otp2 = memberDTO.getOtp();
     	String memberName = memberDTO.getMemberName();
     	String email = memberDTO.getEmail();
     	String number = memberDTO.getNumber();
@@ -139,9 +139,13 @@ public class MemberServiceImpl implements MemberService {
         Optional<Member> userOptional = memberRepo.findByOtp(otp);
         if (userOptional.isPresent()) {
         	Member user = userOptional.get();
-            user.setOtpVerified(true);
-            memberRepo.save(user);
-            return true;
+        	String otpfromdb = user.getOtp();
+        	if (otp.equals(otpfromdb)) {
+        		user.setOtpVerified(true);
+                memberRepo.save(user);
+                return true;
+			}
+            
         }
         return false;
     }

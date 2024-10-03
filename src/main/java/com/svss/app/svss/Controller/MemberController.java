@@ -73,13 +73,13 @@ public class MemberController {
     }
 
     @PostMapping("/verify")
-    public Map<String, String> verifyOtp(@RequestParam String otp) {
-    	Map<String, String> response = new HashMap<>();
+    public Map<String, Boolean> verifyOtp(@RequestParam String otp) {
+    	Map<String, Boolean> response = new HashMap<>();
         if (memberService.verifyOtp(otp)) {
-        	response.put("message", "OTP verified successfully.");
+        	response.put("message", true);
             return response;
         } else {
-        	response.put("message", "Invalid OTP.");
+        	response.put("message", false);
             return response;
         }
     }

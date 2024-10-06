@@ -62,8 +62,8 @@ public class LoanServiceimpl implements LoanService{
 	        loanDTO.setMemberId(loan.getMemberId());
 	        loanDTO.setDate(loan.getDate());
 	        loanDTO.setParticular(loan.getParticular());
-	        BigDecimal loanAmount = loanDTO.getLoanAmount();
-			BigDecimal intrestAmount = loanDTO.getIntrestAmount();
+	        BigDecimal loanAmount = loan.getLoanAmount();
+			BigDecimal intrestAmount = loan.getIntrestAmount();
 			BigDecimal totalAmount = loanAmount.add(intrestAmount);
 			loanDTO.setLoanAmount(loanAmount);
 			loanDTO.setIntrestAmount(intrestAmount);

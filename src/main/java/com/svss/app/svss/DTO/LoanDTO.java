@@ -4,13 +4,17 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
+
 public class LoanDTO {
 
     private int loanId;
     private int memberId;
     private Date date;
     private String particular;
-    private BigDecimal amount;
+    private BigDecimal totalAmount;
+    private BigDecimal intrestAmount;
+    private BigDecimal loanAmount;
     private String status;
     private String remarks;
     private Timestamp createdAt;
@@ -55,15 +59,38 @@ public class LoanDTO {
         this.particular = particular;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+    public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
 
-    public String getStatus() {
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+
+	public BigDecimal getIntrestAmount() {
+		return intrestAmount;
+	}
+
+
+	public void setIntrestAmount(BigDecimal intrestAmount) {
+		this.intrestAmount = intrestAmount;
+	}
+
+
+	public BigDecimal getLoanAmount() {
+		return loanAmount;
+	}
+
+
+	public void setLoanAmount(BigDecimal loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+
+	public String getStatus() {
         return status;
     }
 

@@ -38,6 +38,11 @@ public class Member {
     @Transient
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Transaction> transactions; 
+    
+    @Transient
+    @OneToMany(mappedBy = "memberDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private BC bc; 
+    
     public List<Transaction> getTransactions() {
 		return transactions;
 	}

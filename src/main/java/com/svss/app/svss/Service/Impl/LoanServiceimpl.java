@@ -1,5 +1,6 @@
 package com.svss.app.svss.Service.Impl;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,12 @@ public class LoanServiceimpl implements LoanService{
 		loan.setMemberId(loanDTO.getMemberId());
 		loan.setDate(loanDTO.getDate());
 		loan.setParticular(loanDTO.getParticular());
-		loan.setAmount(loanDTO.getAmount());
+		BigDecimal loanAmount = loanDTO.getLoanAmount();
+		BigDecimal intrestAmount = loanDTO.getIntrestAmount();
+		BigDecimal totalAmount = loanAmount.add(intrestAmount);
+		loan.setLoanAmount(loanAmount);
+		loan.setIntrestAmount(intrestAmount);
+		loan.setTotalAmount(totalAmount);
 		loan.setStatus(loanDTO.getStatus());
 		loan.setRemarks(loanDTO.getRemarks());
 		 Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
@@ -56,7 +62,12 @@ public class LoanServiceimpl implements LoanService{
 	        loanDTO.setMemberId(loan.getMemberId());
 	        loanDTO.setDate(loan.getDate());
 	        loanDTO.setParticular(loan.getParticular());
-	        loanDTO.setAmount(loan.getAmount());
+	        BigDecimal loanAmount = loanDTO.getLoanAmount();
+			BigDecimal intrestAmount = loanDTO.getIntrestAmount();
+			BigDecimal totalAmount = loanAmount.add(intrestAmount);
+			loanDTO.setLoanAmount(loanAmount);
+			loanDTO.setIntrestAmount(intrestAmount);
+			loanDTO.setTotalAmount(totalAmount);
 	        loanDTO.setStatus(loan.getStatus());
 	        loanDTO.setRemarks(loan.getRemarks());
 	        loanDTO.setCreatedAt(loan.getCreatedAt());
@@ -77,7 +88,12 @@ public class LoanServiceimpl implements LoanService{
 		        loanDTO.setMemberId(loan.getMemberId());
 		        loanDTO.setDate(loan.getDate());
 		        loanDTO.setParticular(loan.getParticular());
-		        loanDTO.setAmount(loan.getAmount());
+		        BigDecimal loanAmount = loanDTO.getLoanAmount();
+				BigDecimal intrestAmount = loanDTO.getIntrestAmount();
+				BigDecimal totalAmount = loanAmount.add(intrestAmount);
+				loanDTO.setLoanAmount(loanAmount);
+				loanDTO.setIntrestAmount(intrestAmount);
+				loanDTO.setTotalAmount(totalAmount);
 		        loanDTO.setStatus(loan.getStatus());
 		        loanDTO.setRemarks(loan.getRemarks());
 		        loanDTO.setCreatedAt(loan.getCreatedAt());

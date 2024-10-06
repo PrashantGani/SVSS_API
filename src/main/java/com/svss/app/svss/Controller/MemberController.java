@@ -29,21 +29,10 @@ public class MemberController {
         return message;
     }
     
-//    http://localhost:8080/api/v1/login
-//    @PostMapping(path = "/login")
-//    public ResponseEntity<?> loginEmployee(@RequestBody LoginDTO loginDTO)
-//    {
-//        LoginMesage loginResponse = memberService.loginMember(loginDTO);
-//        return ResponseEntity.ok(loginResponse);
-//    }
     @PostMapping(path = "/login")
     public ResponseEntity<Map<Object,Object>> loginUser(@RequestBody LoginDTO loginDTO)
     {
     	Map<Object, Object> loginMember = memberService.loginMember(loginDTO);
-//    	Map<String, String> response = new HashMap<>();
-//    	response.put("Status", loginResponse);
-//    	response.put("token", UUID.randomUUID().toString());
-//    	System.out.println(response.get("token"));
     	return ResponseEntity.ok(loginMember);
     }
     
@@ -69,7 +58,6 @@ public class MemberController {
       	response.put("message", "Error while sending OTP");
           return response;
       }
-//        return "OTP has been sent to your email.";
     }
 
     @PostMapping("/verify")
@@ -96,49 +84,5 @@ public class MemberController {
             return response;
         }
     }
-//    @PostMapping("/changePwd")
-//    public Map<String, String> ChangePassword(@RequestParam String currentPassword, @RequestParam String newPassword,@RequestParam String confirmNewPassword) {
-//    	Map<String, String> response = new HashMap<>();
-//    	if (memberService.changePassword(currentPassword, newPassword,confirmNewPassword)) {
-//    		response.put("message", "Password updated successfully.");
-//    		return response;
-//    	} else {
-//    		response.put("message","Password reset failed Dueto to Mismatch password");
-//    		return response;
-//    	}
-//    }
 }	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//    @Autowired
-//    private MemberService memberService;
-//    
-//    @PostMapping(path = "/save")
-//    public String saveEmployee(@RequestBody MemberDTO memberDTO)
-//    {
-//        String id = memberService.addEmployee(memberDTO);
-//        return id;
-//    }
-//    @PostMapping(path = "/login")
-//    public ResponseEntity<LoginMesage> loginEmployee(@RequestBody LoginDTO loginDTO)
-//    {
-//        LoginMesage loginResponse = memberService.loginEmployee(loginDTO);
-//        return ResponseEntity.ok(loginResponse);
-//    }
-	
-	
-
-//}

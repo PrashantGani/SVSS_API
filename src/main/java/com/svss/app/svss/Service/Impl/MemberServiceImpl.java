@@ -42,7 +42,6 @@ public class MemberServiceImpl implements MemberService {
     	String number = memberDTO.getNumber();
     	String password = memberDTO.getPassword();
     	String encodedPassword = passwordEncoder.encode(password);
-    	System.out.println("=============="+password);
     	// Get the current LocalDateTime
         LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -79,8 +78,6 @@ public class MemberServiceImpl implements MemberService {
         boolean is_admin = member.getIs_admin();
         boolean isOtpVerified = member.isOtpVerified();
         System.out.println("isOtpVerified"+isOtpVerified);
-//        String otp = member.geti
-//        boolean verifyOtp = verifyOtp(otp);
         int memberId = member.getMemberId();
         response.put("memberId", memberId);
         if (member != null && isOtpVerified) {
@@ -157,8 +154,6 @@ public class MemberServiceImpl implements MemberService {
     public boolean updatePassword(String email, String newPassword,String confirmPassword) {
     	if (newPassword.equals(confirmPassword)) {
     		String encodedNewPassword = passwordEncoder.encode(newPassword);
-//        	String encodedCofirmPassword = passwordEncoder.encode(confirmPassword);
-//        	if (encodedNewPassword.equals(encodedCofirmPassword)) {
         		 Optional<Member> userOptional = memberRepo.findByEmail(email);
         	        if (userOptional.isPresent()) {
         	        	Member user = userOptional.get();
@@ -171,24 +166,4 @@ public class MemberServiceImpl implements MemberService {
 		}
         return false;
     }
-
-
-
-//	@Override
-//	public boolean changePassword(String currentPassword, String newPassword, String confirmNewPassword) {
-//		if (newPassword.equals(confirmNewPassword)) {
-//			String encodedCurrentPassword = passwordEncoder.encode(currentPassword);
-//			String encodedNewPassword = passwordEncoder.encode(newPassword);
-//			Optional<Member> userOptional = memberRepo.findByPassword(encodedCurrentPassword);
-//			if (userOptional.isPresent()) {
-//	        	Member user = userOptional.get();
-////	            if (user.isOtpVerified()) {
-//	                user.setPassword(encodedNewPassword);  // Password should be hashed in real applications
-//	                memberRepo.save(user);
-//	                return true;
-////	            }
-//	        }
-//		}
-//		return false;
-//	}
 }

@@ -25,9 +25,14 @@ public class Loan {
 	    private String particular;
 
 	    @Column(nullable = false)
-	    private BigDecimal amount;
+	    private BigDecimal totalAmount;
+	    
+	    @Column(nullable = false)
+	    private BigDecimal intrestAmount;
+	    
+	    @Column(nullable = false)
+	    private BigDecimal loanAmount;
 
-//	    @Enumerated(EnumType.STRING)
 	    @Column(nullable = false)
 	    private String status;
 
@@ -64,19 +69,36 @@ public class Loan {
         this.particular = particular;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public BigDecimal getIntrestAmount() {
+		return intrestAmount;
+	}
+
+	public void setIntrestAmount(BigDecimal intrestAmount) {
+		this.intrestAmount = intrestAmount;
+	}
+
+	public BigDecimal getLoanAmount() {
+		return loanAmount;
+	}
+
+	public void setLoanAmount(BigDecimal loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+	public void setStatus(String status) {
         this.status = status;
     }
 

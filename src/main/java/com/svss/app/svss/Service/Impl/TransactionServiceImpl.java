@@ -54,13 +54,6 @@ public class TransactionServiceImpl implements TransactionService{
 	public List<TransactionsDTO> getAllTransaction() {
 		List<Transaction> loan = transactionRepo.findAll();
 		
-//		for (Transaction transaction : loan) {
-//			
-//		}
-//		for (int i = 0; i < loan.size(); i++) {
-//			Member member = memberRepo.findById(loan.get(i).getMember());
-//		}
-//		Member member = memberRepo.findById();
 		List<TransactionsDTO> dtoList = convertLoansToLoanDTOs(loan);
 		return dtoList;
 	}
